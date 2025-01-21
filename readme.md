@@ -24,6 +24,8 @@ In dieser Lernsituation analysieren wir die NYC Yellow Taxi Trip-Daten. Die Date
 - `Total_amount`: Gesamtbetrag der Fahrt  
 - `Payment_type`: Zahlungsart  
 
+Bearbeiten Sie die Aufgaben in einem Jupyter Notebook.
+
 ---
 
 ## Aufgaben  
@@ -35,16 +37,14 @@ In dieser Lernsituation analysieren wir die NYC Yellow Taxi Trip-Daten. Die Date
 **Anleitung:**  
 - Experimentiere mit `numpy.loadtxt` oder `numpy.genfromtxt` zum Einlesen.  
 - Arbeite korrekt mit Trennzeichen (z.B. Komma).  
-- Lade nur die ersten **100 Zeilen**, um den Speicherbedarf zu reduzieren.  
+- Warum sind so viele nan-Daten in dem Numpy-Array?
 
 **Beispielcode:**  
 ```python
 import numpy as np
 # Ein Beispielarray erstellen (anstelle der Datei)
-beispiel_data = """1,2,3
-4,5,6
-7,8,9""".splitlines()
-array = np.genfromtxt(beispiel_data, delimiter=",")
+
+array = np.genfromtxt(file, delimiter="#")
 print(array)
 ```
 
@@ -59,9 +59,9 @@ print(array)
 **Lernziel:** Daten aus spezifischen Spalten extrahieren und analysieren.  
 
 **Aufgaben:**  
-1. Extrahiere die Spalte **`Trip_distance`**.  
-2. Wähle alle Zeilen aus, bei denen `Passenger_count` genau **1** ist.  
-3. Wähle gezielt einen Bereich aus: **Zeilen 10 bis 20** und **Spalten 2 bis 4**.  
+1. Extrahiere die Spalte **`trip_distance`** und zeige die ersten 30 Einträge an.
+2. Extrahiere die Spalten **`fare_amount`** und **`tip_amount`**  und zeige die ersten 30 Einträge an
+3. Wähle gezielt einen Bereich aus: **Zeilen 1011 bis 1097** und **Spalten 6 bis 9**.  
 4. Extrahiere **jede zweite Zeile** der Daten.  
 5. Extrahiere die **letzte Spalte** des Arrays.  
 
@@ -93,8 +93,7 @@ print("Letzte Spalte:", array[:, -1])
 1. Berechne den **Durchschnitt** der Spalte `Trip_distance`.  
 2. Ermittle den **Median** und die **Standardabweichung** der Spalte `Fare_amount`.  
 3. Summiere die Werte der Spalte `Total_amount`.  
-4. Zähle Fahrten mit genau **0 Passagieren**.  
-5. Die Summe aller Spalten 
+4. Die Summe aller Spalten 
 
 **Beispielcode:**  
 ```python
@@ -117,10 +116,11 @@ print("Summe:", np.sum(array))
 **Lernziel:** Bestimmte Bedingungen auf Arrays anwenden und gefilterte Ergebnisse analysieren.  
 
 **Aufgaben:**  
-1. Finde alle Fahrten, bei denen `Trip_distance > 5` Meilen war.  
-2. Ermittle Fahrten, bei denen `Fare_amount` zwischen **10 und 20 Dollar** liegt.  
-3. Kombiniere Bedingungen: Fahrten mit mehr als **2 Passagieren** und einer Strecke unter **2 Meilen**. 
-4. Gibt es Fahrten, die **keine Passagiere** hatten?
+1. Finde alle Fahrten, bei denen `Trip_distance > 5` Meilen war. Wie viele waren es?
+2. Wähle alle Zeilen aus, bei denen `passenger_count` genau **1** ist.   
+3. Ermittle Fahrten, bei denen `Fare_amount` zwischen **10 und 20 Dollar** liegt.  
+4. Kombiniere Bedingungen: Fahrten mit mehr als **2 Passagieren** und einer Strecke unter **2 Meilen**.
+5. Zähle Fahrten mit genau **0 Passagieren**.
 
 **Beispielcode:**  
 ```python
@@ -143,7 +143,8 @@ print("Werte zwischen 10 und 20:", array[(array >= 10) & (array <= 20)])
 **Aufgaben:**
 1. Berechne den **Fahrpreis pro Meile** für jede Fahrt.
 2. In den Daten hat sich ein Fehler eingeschlichen: Erhöhe alle `Fare_amount` um **10%**.
-3. **Vergleiche** die Laufzeit von vektorisierten und nicht-vektorisierten Berechnungen.
+3. 
+3. **Vergleiche** die Laufzeit von vektorisierten und nicht-vektorisierten Berechnungen. Realisiere 
 
 ![vectorization](./images/vec1.png)
 ![vectorization](./images/vec2.png)
@@ -172,13 +173,16 @@ np.savetxt('output.csv', array, delimiter=',')
 ## Weitere Aufgaben  
 
 1. **Zeitbasierte Analysen:** Berechne die durchschnittliche Fahrtdauer in Minuten.  
-2. **Vergleich der Zahlungsarten:** Wie viele Fahrten wurden per Kreditkarte oder bar bezahlt?  
+2. **Vergleich der Zahlungsarten:** Wie viele Fahrten wurden per Kreditkarte oder bar bezahlt?  Welche Zahlungsart hat den höchsten Gesamtumsatz?
 3. **Analyse der Passagieranzahl:** Finde die Fahrt mit den meisten Passagieren.  
 4. **Streckenanalyse:** Identifiziere die kürzesten und längsten Fahrten und berechne die durchschnittliche Fahrtstrecke.  
 5. **Beliebtester Endpunkt:**  
    - Ermittle das häufigste `DOLocationID` (Zielgebiet).  
    - Berechne die Anzahl der Fahrten zu diesem Ziel.  
-
+6. **Identifikation von Anomalien:** 
+   - Finde Ausreißer in den Total Amounts. Ein Ausreißer ist ein Wert, der mehr als 3 Standardabweichungen vom Mittelwert entfernt ist. 
+   - Finde Ausreißer in den Trip Distances.
+7. **TOP 10 Trinkgelder** Ermittle die 10 höchsten Trinkgelder. Nutze für das sortieren `np.argsort`
 ---
 
 ## Abschluss  
