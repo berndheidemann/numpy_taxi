@@ -136,15 +136,11 @@ print("Werte zwischen 10 und 20:", array[(array >= 10) & (array <= 20)])
 
 ---
 
-### 5. Vektorisierung und Effizienz
-
-**Lernziel:** Verstehen, wie Vektorisierung die Effizienz von Berechnungen verbessert.
+### 5. Vektorisierung
 
 **Aufgaben:**
 1. Berechne den **Fahrpreis pro Meile** für jede Fahrt.
 2. In den Daten hat sich ein Fehler eingeschlichen: Erhöhe alle `Fare_amount` um **10%**.
-3. 
-3. **Vergleiche** die Laufzeit von vektorisierten und nicht-vektorisierten Berechnungen. Realisiere 
 
 ![vectorization](./images/vec1.png)
 ![vectorization](./images/vec2.png)
@@ -174,8 +170,8 @@ np.savetxt('output.csv', array, delimiter=',')
 
 1. **Zeitbasierte Analysen:** Berechne die durchschnittliche Fahrtdauer in Minuten.  
 2. **Vergleich der Zahlungsarten:** Wie viele Fahrten wurden per Kreditkarte oder bar bezahlt?  Welche Zahlungsart hat den höchsten Gesamtumsatz?
-3. **Analyse der Passagieranzahl:** Finde die Fahrt mit den meisten Passagieren.  
-4. **Streckenanalyse:** Identifiziere die kürzesten und längsten Fahrten und berechne die durchschnittliche Fahrtstrecke.  
+3. **Analyse der Passagieranzahl:** Finde die Fahrt mit den meisten Passagieren. Analysiere nur Fahrten, die nicht NaN als Anzahl haben. (mit `np.isnan()` bekommt man einen bool Index wobei die NaN True haben. Mit einem Tilde `~` negiert man die True und False Werte.
+4. **Streckenanalyse:** Identifiziere die kürzesten und längsten Fahrten und berechne die durchschnittliche Fahrtstrecke. Betrachte nur Datensätze die nicht NaN in den beiden Spalten haben.
 5. **Beliebtester Endpunkt:**  
    - Ermittle das häufigste `DOLocationID` (Zielgebiet).  
    - Berechne die Anzahl der Fahrten zu diesem Ziel.  
